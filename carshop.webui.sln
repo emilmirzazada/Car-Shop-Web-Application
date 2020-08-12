@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "carshop.webui", "carshop.webui.csproj", "{A81833B0-AFEE-40DB-8220-2F1780B8E480}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A81833B0-AFEE-40DB-8220-2F1780B8E480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81833B0-AFEE-40DB-8220-2F1780B8E480}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81833B0-AFEE-40DB-8220-2F1780B8E480}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81833B0-AFEE-40DB-8220-2F1780B8E480}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2D17966-2095-4F39-951E-7F3FEB492715}
+	EndGlobalSection
+EndGlobal

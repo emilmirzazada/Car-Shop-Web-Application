@@ -1,0 +1,213 @@
+﻿@model TbAds
+
+<h1>Ətraflı məlumat</h1>
+
+<link rel="stylesheet" type="text/css" href="/modules/lightbox2/dist/css/lightbox.min.css" />
+<script src="/modules/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
+
+<div>
+
+    <img id="mainImage" height="300" width="440" src="~/img/@Model.AdsImageUrls.First().ImageUrl" />
+    <div id="divContainer">
+        @foreach (var item in Model.AdsImageUrls)
+        {
+            <img class="imgStyle" src="~/img/@item.ImageUrl" />
+        }
+    </div>
+    <div class="mt-3" style="display:inline-flex">
+        <button class="btn-danger" style="width: 150px; height: 70px;"><h4>@Model.Price <sup>@Model.Currency.Name</sup></h4></button>
+        <h3 class="ml-2">
+            @Model.Brand.BrandName  @Model.Model.ModelName , @Model.EngineCapacity.Name l
+            , @Model.GraduationYear il , @Model.Walk km
+        </h3>
+    </div>
+
+</div>
+
+<hr />
+
+<div class="container" style="display:inline-flex">
+
+    <div class="col-md-6" style="width:250px;">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Şəhər</td>
+                    <td>@Model.City.Name</td>
+                </tr>
+                <tr>
+                    <td>Marka</td>
+                    <td>@Model.Brand.BrandName</td>
+                </tr>
+                <tr>
+                    <td>Model</td>
+                    <td>@Model.Model.ModelName</td>
+                </tr>
+                <tr>
+                    <td>Buraxılış ili</td>
+                    <td>@Model.GraduationYear</td>
+                </tr>
+                <tr>
+                    <td>Ban növü</td>
+                    <td>@Model.BodyType.Name</td>
+                </tr>
+                <tr>
+                    <td>Rəng</td>
+                    <td>@Model.Color.Name</td>
+                </tr>
+                <tr>
+                    <td>Mühərrikin həcmi</td>
+                    <td>@Model.EngineCapacity.Name</td>
+                </tr>
+                <tr>
+                    <td>Mühərrikin gücü</td>
+                    <td>@Model.Hp</td>
+                </tr>
+                <tr>
+                    <td>Yanacaq növü</td>
+                    <td>@Model.FuelType.Name</td>
+                </tr>
+                <tr>
+                    <td>Yürüş</td>
+                    <td>@Model.Walk</td>
+                </tr>
+                <tr>
+                    <td>Sürətlər qutusu</td>
+                    <td>@Model.Gearbox.Name</td>
+                </tr>
+                <tr>
+                    <td>Ötürücü</td>
+                    <td>@Model.Transmission.Name</td>
+                </tr>
+                <tr>
+                    <td>Qiymət</td>
+                    <td>@Model.Price @Model.Currency.Name</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6" style="display:inline-flex">
+        <ul>
+            @if (Model.AlloyWheels)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.AlloyWheels)
+                </li>
+            }
+            @if (Model.Usa)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.Usa)
+                </li>
+            }
+            @if (Model.Luke)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.Luke)
+                </li>
+            }
+            @if (Model.RainSensor)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.RainSensor)
+                </li>
+            }
+            @if (Model.CentralClosure)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.CentralClosure)
+                </li>
+            }
+            @if (Model.ParkingRadar)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.ParkingRadar)
+                </li>
+            }
+            @if (Model.Conditioner)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.Conditioner)
+                </li>
+            }
+            @if (Model.SeatHeating)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.SeatHeating)
+                </li>
+            }
+            @if (Model.LeatherSalon)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.LeatherSalon)
+                </li>
+            }
+            @if (Model.Xenon)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.Xenon)
+                </li>
+            }
+            @if (Model.RearCamera)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.RearCamera)
+                </li>
+            }
+            @if (Model.SideCurtains)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.SideCurtains)
+                </li>
+            }
+            @if (Model.SeatVentilation)
+            {
+                <li>
+                    @Html.DisplayNameFor(i => i.SeatVentilation)
+                </li>
+            }
+            <hr />
+            <span>
+                @Model.Note
+            </span>
+        </ul>
+
+    </div>
+</div>
+
+<style>
+    .imgStyle {
+        height: 100px;
+        width: 100px;
+        border: 3px solid grey;
+    }
+</style>
+
+@section Scripts{
+
+
+
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            $('#divContainer img').on({
+                mouseover: function () {
+                    $(this).css({
+                        'cursor': 'pointer',
+                        'border-color': 'red'
+                    });
+                },
+                mouseout: function () {
+                    $(this).css({
+                        'cursor': 'default',
+                        'border-color': 'grey'
+                    });
+                },
+                click: function () {
+                    var imageUrl = $(this).attr('src');
+                    $('#mainImage').attr('src', imageUrl);
+                }
+            });
+        });
+    </script>
+
+}

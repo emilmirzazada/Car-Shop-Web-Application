@@ -1,0 +1,121 @@
+﻿@model ProductListViewModel
+
+
+<div class="row">
+    <div class="col">
+
+
+        <form asp-controller="Shop" asp-action="List" method="post">
+            
+            <div class="form-group row mt-3">
+
+                <div class="col-md-2">
+                    <select id="BrandId" class="form-control" asp-for="BrandId" asp-items="@(new SelectList(ViewBag.Brands, "Value", "Text"))">
+                        <option>Bütün markalar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4" style="display:inline-flex">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Qiymət</span>
+                        </div>
+
+                    </div>
+                    <select id="CurrencyId" class="form-control" asp-for="CurrencyId" asp-items="@(new SelectList(ViewBag.Currency, "Value", "Text"))">
+                        <option value="28">AZN</option>
+                    </select>
+                    <input type="text" class="form-control" asp-for="minPrice" placeholder="min.">
+                    <input type="text" class="form-control" asp-for="maxPrice" placeholder="max.">
+                </div>
+
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="Credit">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Kredit
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <select id="CityId" class="form-control" asp-for="CityId" asp-items="@(new SelectList(ViewBag.City, "Value", "Text"))">
+                        <option>Bütün şəhərlər</option>
+                    </select>
+
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" value="Search" name="Search" class="btn btn-danger" style="width:170px;">Axtar</button>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <select id="ModelId" class="form-control" asp-for="ModelId" asp-items="@(new SelectList(String.Empty, "Value", "Text"))">
+                        <option>Bütün modellər</option>
+                    </select>
+
+                </div>
+
+                <div class="col-md-4" style="display:inline-flex">
+
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Buraxılış ili</span>
+                    </div>
+
+                    <input type="text" class="form-control" asp-for="minYear" placeholder="min.">
+                    <input type="text" class="form-control" asp-for="maxYear" placeholder="max.">
+                </div>
+
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" asp-for="Barter">
+                    <label class="form-check-label" for="defaultCheck2">
+                        Barter
+                    </label>
+                </div>
+                <div class="col-sm-2 offset-md-2">
+                    <button type="submit" value="DetailedSearch" name="DetailedSearch" class="btn btn-secondary" style="width:170px;">Ətraflı axtarış</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<div id="cardCar" class="row mt-2">
+    @foreach (var ads in Model.TbAdses)
+    {
+        <div onclick="reply_click(@ads.Id)" class="col-md-3">
+            @await Html.PartialAsync("_product", ads)
+        </div>
+    }
+</div>
+@Html.Hidden("RedirectTo", Url.Action("CarDetails", "Shop"))
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#BrandId").change(function () {
+                $.getJSON("/Shop/ModelList", { Bid: $("#BrandId").val() }, function (d) {
+                    var row = "";
+                    $("#ModelId").empty();
+                    row += "<option>" + "Bütün modellər" + "</option>"
+                    $.each(d, function (i, v) {
+                        row += "<option value=" + v.value + ">" + v.text + "</option>"
+                    });
+                    $("#ModelId").html(row);
+                })
+            })
+        })
+
+        function reply_click(clicked_id) {
+            var url = $("#RedirectTo").val();
+            url = url + "/" + clicked_id;
+            window.open(url);
+        }
+
+
+    </script>
+
+}

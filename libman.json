@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "twitter-bootstrap@4.5.1",
+      "destination": "wwwroot/twitter-bootstrap/"
+    },
+    {
+      "library": "lazyloadjs@3.2.2",
+      "destination": "wwwroot/lazyloadjs/"
+    },
+    {
+      "library": "jquery.lazyload@1.9.1",
+      "destination": "wwwroot/jquery.lazyload/"
+    },
+    {
+      "library": "file-upload-with-preview@4.0.8",
+      "destination": "wwwroot/file-upload-with-preview/"
+    }
+  ]
+}

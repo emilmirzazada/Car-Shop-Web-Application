@@ -1,0 +1,29 @@
+﻿@model TbAds
+
+
+<div class="card mb-2" id="cardCar" style="width:250px;height:260px">
+
+    <img class="card-img-top" src="~/img/@Model.AdsImageUrls.First().ImageUrl" style="width:248px;height:150px" />
+
+    <div style="width:auto; display:inline-flex">
+        <button class="btn-danger" style="width:105px;">@Model.Price @Model.Currency.Name</button>
+        @if (Model.Credit)
+        {
+            <i class="fa fa-percent ml-2" title="Kreditdədir"></i>
+        }
+        @if (Model.Barter)
+        {
+            <i class="fas fa-sync ml-2" title="Barter mümkündür"></i>
+        }
+    </div>
+
+
+    <div class="card-body">
+        <h6 class="card-title" style="width:250px">@Model.Brand.BrandName  @Model.Model.ModelName</h6>
+
+        <small class="h-25 text-muted">@Model.GraduationYear il * @Model.EngineCapacity.Name l * @Model.Walk km</small>
+    </div>
+
+</div>
+
+
